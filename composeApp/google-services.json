@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "221685453663",
+    "project_id": "sixkiwin",
+    "storage_bucket": "sixkiwin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221685453663:android:a8680487162a4b3df2dcea",
+        "android_client_info": {
+          "package_name": "fr.ablanc.sixkiwin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7FN3rxZzkjlyEBmIKFEtql_nv1mS9YeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
