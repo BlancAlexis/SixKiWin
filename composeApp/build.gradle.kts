@@ -39,6 +39,9 @@ kotlin {
             @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
 
+
+            api(libs.firebase.common)
+
             api(libs.koin)
             api(libs.koin.compose)
             api(libs.precompose)
