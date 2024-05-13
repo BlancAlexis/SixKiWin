@@ -41,6 +41,7 @@ kotlin {
 
 
             api(libs.firebase.common)
+            api(libs.firebase.firestore)
 
             api(libs.koin)
             api(libs.koin.compose)
