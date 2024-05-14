@@ -36,7 +36,6 @@ fun LoginScreen(viewModel: LoginViewModel, content: () -> Unit) {
         }
         Button(
             onClick = {
-                viewModel.createUser()
             }
         ){
 

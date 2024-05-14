@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    id("com.google.gms.google-services").version("4.3.14").apply(false)
 
 }
 
@@ -31,6 +32,7 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
+            implementation(platform("com.google.firebase:firebase-bom:30.0.1")) // This line to add the firebase bom
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,6 +45,7 @@ kotlin {
 
             api(libs.firebase.common)
             api(libs.firebase.firestore)
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
             api(libs.koin)
             api(libs.koin.compose)
@@ -80,11 +83,17 @@ android {
             isMinifyEnabled = false
         }
     }
+  //  plugins{
+    //    id("com.google.gms.google-services")
+
+    //}
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
     dependencies {
+        // This Lines to add firebase-common
+            implementation("com.google.firebase:firebase-common-ktx:20.3.3")
         debugImplementation(libs.compose.ui.tooling)
     }
 }

@@ -6,7 +6,7 @@ import presentation.screen.home.HomeViewModel
 import presentation.screen.login.LoginViewModel
 
 val vmModule = module {
-    factory { LoginViewModel(get()) }
+    factory { LoginViewModel() }
     factory { HomeViewModel() }
     factory { StartGameViewModel() }
 }
