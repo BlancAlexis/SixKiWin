@@ -29,6 +29,20 @@ class DataSource(private val firestoreInstance: FirebaseFirestore) {
         }
     }
 
+ suspend fun getUsers(uuidUser: String): Flow<Ressource<List<User>>> = flow {
+        emit(Ressource.Loading())
+
+        val documentSnapshot = firestoreInstance.collection(USERS_COLLECTION).get()
+        val a : MutableList<User>  = mutableListOf<User>()
+     documentSnapshot.documents.map {
+         a.add(it.data<User>())
+     }
+     emit(Ressource.Success(a))
+         else {
+            emit(Ressource.Error())
+        }
+    }
+
 
     suspend fun updateUser(user: User): Ressource<Unit> = try {
         firestoreInstance.collection(USERS_COLLECTION).document(user.uuid).update(

@@ -1,5 +1,6 @@
 package presentation.util
 
+import User
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -16,12 +17,12 @@ import androidx.compose.ui.Modifier
 @Composable
 fun OutlinedSpinner(
     modifier: Modifier? = null,
-    listMaintenanceName: List<String>,
+    listMaintenanceName: List<User>,
     textLabel: String,
-    onItemSelect: (String) -> Unit = {}
+    onItemSelect: (User) -> Unit = {}
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedOptionText by remember { mutableStateOf(listMaintenanceName[0]) }
+    var selectedOptionText by remember { mutableStateOf(listMaintenanceName[0].prenom) }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
@@ -34,7 +35,7 @@ fun OutlinedSpinner(
             readOnly = true,
             value = selectedOptionText,
             onValueChange = { },
-            label = { Text(textLabel) },
+            label = { Text(text = textLabel) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(
                     expanded = expanded
@@ -48,12 +49,12 @@ fun OutlinedSpinner(
                 expanded = false
             }
         ) {
-            listMaintenanceName.forEach { selectionOption: String ->
+            listMaintenanceName.forEach { user : User ->
                 DropdownMenuItem(
-                    text = { Text(text = selectionOption) },
+                    text = { Text(text = user.prenom) },
                     onClick = {
-                        onItemSelect(selectionOption)
-                        selectedOptionText = selectionOption
+                        onItemSelect(user)
+                        selectedOptionText = user.prenom
                         expanded = false
                     }
                 )
