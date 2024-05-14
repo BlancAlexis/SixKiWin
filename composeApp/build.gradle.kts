@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
-    id("com.google.gms.google-services").version("4.3.14").apply(false)
+    kotlin("plugin.serialization") version "1.9.0"
+    id("com.google.gms.google-services").version("4.3.15").apply(false)
 
 }
 
@@ -83,10 +84,8 @@ android {
             isMinifyEnabled = false
         }
     }
-  //  plugins{
-    //    id("com.google.gms.google-services")
+    apply(plugin = "com.google.gms.google-services")
 
-    //}
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 
 
 fun setupKoin() = startKoin {
-   // modules(firebaseModule)
-   // modules(dataModule)
+    modules(firebaseModule)
+    modules(dataModule)
     modules(vmModule)
 }

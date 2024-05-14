@@ -35,7 +35,7 @@ class DataSource(private val firestoreInstance: FirebaseFirestore) {
             hashMapOf<String, Any>(
                 "uuid" to user.uuid,
                 "prenom" to user.prenom,
-                "point" to user.point,
+             //  "point" to user.point,
             )
         )
         Ressource.Success(Unit)
@@ -52,6 +52,6 @@ class DataSource(private val firestoreInstance: FirebaseFirestore) {
     }
 
     companion object {
-        const val USERS_COLLECTION = "users"
+        const val USERS_COLLECTION = "USERS"
     }
 }

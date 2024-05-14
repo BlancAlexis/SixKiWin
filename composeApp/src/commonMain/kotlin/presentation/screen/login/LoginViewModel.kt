@@ -8,11 +8,22 @@ import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
-class LoginViewModel constructor(
+class LoginViewModel constructor(dataSource: DataSource
 ): ViewModel() {
     init {
         println("init")
-Firebase.firestore
+        viewModelScope.launch {
+            dataSource.addNewUser(User("ss", "Alexis"))
+        }
+        viewModelScope.launch {
+            dataSource.getUser("mxDyfZn9znGm1FLWVD9q").collect{
+                when(it){
+                    is Ressource.Error -> println(it.error)
+                    is Ressource.Loading -> println("loading")
+                    is Ressource.Success -> println(it.data)
+                }
+            }
+        }
         println("initFinish")
     }
 
