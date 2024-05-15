@@ -22,7 +22,7 @@ fun OutlinedSpinner(
     onItemSelect: (User) -> Unit = {}
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedOptionText by remember { mutableStateOf(listMaintenanceName[0].prenom) }
+    var selectedOptionText by remember { mutableStateOf(listMaintenanceName[0].firstname) }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
@@ -51,10 +51,10 @@ fun OutlinedSpinner(
         ) {
             listMaintenanceName.forEach { user : User ->
                 DropdownMenuItem(
-                    text = { Text(text = user.prenom) },
+                    text = { Text(text = user.firstname) },
                     onClick = {
                         onItemSelect(user)
-                        selectedOptionText = user.prenom
+                        selectedOptionText = user.firstname
                         expanded = false
                     }
                 )

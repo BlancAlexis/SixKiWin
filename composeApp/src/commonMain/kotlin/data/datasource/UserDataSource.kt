@@ -1,4 +1,4 @@
-package data.firestore
+package data.datasource
 
 import User
 import dev.gitlive.firebase.firestore.FirebaseFirestore
@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import presentation.screen.login.Ressource
 
-class DataSource(private val firestoreInstance: FirebaseFirestore) {
+class UserDataSource(private val firestoreInstance: FirebaseFirestore) {
     suspend fun addNewUser(user: User): Ressource<Unit> {
         return try {
-            firestoreInstance.collection(USERS_COLLECTION).document(user.uuid).set(user)
+            firestoreInstance.collection(USERS_COLLECTION).document(user.uuid.toString()).set(user)
             Ressource.Success(Unit)
         } catch (e: Exception) {
             Ressource.Error(e)
@@ -29,27 +29,28 @@ class DataSource(private val firestoreInstance: FirebaseFirestore) {
         }
     }
 
- suspend fun getUsers(uuidUser: String): Flow<Ressource<List<User>>> = flow {
+    suspend fun getUsers(uuidUser: String): Flow<Ressource<List<User>>> = flow {
         emit(Ressource.Loading())
-
         val documentSnapshot = firestoreInstance.collection(USERS_COLLECTION).get()
-        val a : MutableList<User>  = mutableListOf<User>()
-     documentSnapshot.documents.map {
-         a.add(it.data<User>())
-     }
-     emit(Ressource.Success(a))
-         else {
+        val a: MutableList<User> = mutableListOf<User>()
+        if (documentSnapshot.documents != null) {
+            documentSnapshot.documents.map {
+                a.add(it.data<User>())
+            }
+            emit(Ressource.Success(a))
+        } else {
             emit(Ressource.Error())
         }
     }
 
 
     suspend fun updateUser(user: User): Ressource<Unit> = try {
-        firestoreInstance.collection(USERS_COLLECTION).document(user.uuid).update(
+        firestoreInstance.collection(USERS_COLLECTION).document(user.uuid.toString()).update(
             hashMapOf<String, Any>(
                 "uuid" to user.uuid,
-                "prenom" to user.prenom,
-             //  "point" to user.point,
+                "firstname" to user.firstname,
+                "podium" to user.podium,
+                "totalPoints" to user.totalPoints
             )
         )
         Ressource.Success(Unit)

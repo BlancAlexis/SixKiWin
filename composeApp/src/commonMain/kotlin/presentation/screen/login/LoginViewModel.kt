@@ -1,16 +1,13 @@
 package presentation.screen.login
 
-import User
-import data.firestore.DataSource
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.firestore.firestore
+import data.datasource.UserDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
-class LoginViewModel constructor(dataSource: DataSource
+class LoginViewModel constructor(userDataSource: UserDataSource
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -21,7 +18,7 @@ class LoginViewModel constructor(dataSource: DataSource
             dataSource.addNewUser(User("ss", "Alexis"))
         }*/
         viewModelScope.launch {
-            dataSource.getUser("mxDyfZn9znGm1FLWVD9q").collect{
+            userDataSource.getUser("mxDyfZn9znGm1FLWVD9q").collect{
                 when(it){
                     is Ressource.Error -> println(it.error)
                     is Ressource.Loading -> println("loading")

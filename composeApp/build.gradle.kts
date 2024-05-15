@@ -42,7 +42,7 @@ kotlin {
             implementation(compose.animation)
             @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-
+            implementation( "com.benasher44:uuid:0.8.4")
 
             api(libs.firebase.common)
             api(libs.firebase.firestore)
