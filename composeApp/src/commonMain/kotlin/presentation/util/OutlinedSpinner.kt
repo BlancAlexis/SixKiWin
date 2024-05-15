@@ -1,6 +1,5 @@
 package presentation.util
 
-import User
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -13,6 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import data.model.User
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OutlinedSpinner(
@@ -49,7 +50,7 @@ fun OutlinedSpinner(
                 expanded = false
             }
         ) {
-            listMaintenanceName.forEach { user : User ->
+            listMaintenanceName.forEach { user: User ->
                 DropdownMenuItem(
                     text = { Text(text = user.firstname) },
                     onClick = {

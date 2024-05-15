@@ -6,11 +6,11 @@ import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import presentation.screen.home.HomeScreen
-import presentation.screen.login.LoginScreen
-import presentation.screen.StartGameScreen
-import presentation.screen.StartGameViewModel
 import presentation.screen.home.HomeViewModel
+import presentation.screen.login.LoginScreen
 import presentation.screen.login.LoginViewModel
+import presentation.screen.startgame.StartGameScreen
+import presentation.screen.startgame.StartGameViewModel
 
 @Composable
 fun Nav() {

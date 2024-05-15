@@ -1,9 +1,7 @@
 package presentation.screen.login
 
-import User
+import data.model.User
 
 data class LoginUiState(
     val listUser: List<User> = listOf()
-) {
-
-}
+)

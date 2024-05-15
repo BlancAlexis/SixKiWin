@@ -10,12 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.FirebaseApp
-import dev.gitlive.firebase.initialize
-import presentation.Nav
 import moe.tlaster.precompose.PreComposeApp
 import org.koin.compose.KoinContext
+import presentation.Nav
 
 
 @Composable

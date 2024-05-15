@@ -1,10 +1,10 @@
 package data.datasource
 
-import User
+import data.model.User
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import presentation.screen.login.Ressource
+import util.Ressource
 
 class UserDataSource(private val firestoreInstance: FirebaseFirestore) {
     suspend fun addNewUser(user: User): Ressource<Unit> {

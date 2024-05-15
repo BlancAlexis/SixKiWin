@@ -1,4 +1,3 @@
 package data.datasource
 
-class GameDataSource {
-}
+class GameDataSource

@@ -1,4 +1,4 @@
-package presentation.screen.login
+package util
 
 sealed class Ressource<T>(
     val data: T? = null,
