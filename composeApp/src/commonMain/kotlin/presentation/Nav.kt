@@ -25,7 +25,7 @@ fun Nav() {
             route = Route.LOGIN.path
         ) {
             val viewModel = koinViewModel(LoginViewModel::class)
-            LoginScreen(viewModel) {
+            LoginScreen(viewModel, content = viewModel::onEvent) {
                 navigator.navigate(Route.HOME.path)
                 // Route de transition a faire
             }

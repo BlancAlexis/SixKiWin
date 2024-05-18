@@ -38,8 +38,6 @@ class UserDataSource(private val firestoreInstance: FirebaseFirestore) {
         val a: MutableList<User> = mutableListOf<User>()
         if (documentSnapshot.documents != null) {
             documentSnapshot.documents.map {
-                val user = it.data<User>()
-                user.uuid = uuidFrom(it.id)
                 a.add(it.data<User>())
             }
             emit(Ressource.Success(a))

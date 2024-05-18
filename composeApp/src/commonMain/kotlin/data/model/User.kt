@@ -14,21 +14,8 @@ import kotlinx.serialization.encoding.Encoder
 
 @Serializable
 data class User(
-    @Contextual
-    var uuid: Uuid = uuid4(),
+    var uuid: String = uuid4().toString(),
     val podium: Int = 0,
     val totalPoints: Int = 0,
     val firstname: String,
 )
-
-object UuidSerializer : KSerializer<Uuid> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("UUID", PrimitiveKind.STRING)
-
-    override fun serialize(encoder: Encoder, value: Uuid) {
-        encoder.encodeString(value.toString())
-    }
-
-    override fun deserialize(decoder: Decoder): Uuid {
-        return uuidFrom(decoder.decodeString())
-    }
-}

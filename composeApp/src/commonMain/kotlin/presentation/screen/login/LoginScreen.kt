@@ -20,7 +20,7 @@ import presentation.util.OutlinedSpinner
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel, content: () -> Unit) {
+fun LoginScreen(viewModel: LoginViewModel, content: (StartEvent) -> Unit = {}, next : () -> Unit ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -32,7 +32,10 @@ fun LoginScreen(viewModel: LoginViewModel, content: () -> Unit) {
                 OutlinedSpinner(
                     modifier = Modifier.fillMaxWidth(0.7f),
                     listMaintenanceName = uiState.listUser,
-                    textLabel = "Qui êtes vous ?"
+                    textLabel = "Qui êtes vous ?",
+                    onItemSelect = {
+                                   next()
+                    },
                 )
             } else {
                 Text("Pas d'utilisateur")
@@ -50,7 +53,7 @@ fun LoginScreen(viewModel: LoginViewModel, content: () -> Unit) {
             Spacer(modifier = Modifier.fillMaxHeight(0.1f))
             Button(
                 modifier = Modifier.fillMaxWidth(0.6f),
-                onClick = { content() }
+                onClick = { content(StartEvent.create) }
             ) {
                 Text("Ajout")
             }
