@@ -16,21 +16,25 @@ class LoginViewModel(
     val uiState = _uiState.asStateFlow()
 
     init {
-        /*println("init")
+        println("init")
         viewModelScope.launch {
-            dataSource.addNewUser(data.model.User("ss", "Alexis"))
-        }*/
-        viewModelScope.launch {
-            userDataSource.getUser("mxDyfZn9znGm1FLWVD9q").collect {
+
+
+           // userDataSource.addNewUser(data.model.User(firstname = "Alexis"))
+
+        }
+      /*  viewModelScope.launch {
+            userDataSource.getUsers().collect {
                 when (it) {
                     is Ressource.Error -> println(it.error)
                     is Ressource.Loading -> println("loading")
                     is Ressource.Success -> println(it.data)
                 }
             }
-        }
+        }*/
         println("initFinish")
     }
+
 
     fun test() {
         println("cc c moi")

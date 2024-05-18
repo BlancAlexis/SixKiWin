@@ -33,6 +33,9 @@ fun App() {
 
 }
 
+expect fun bruh()
+
+
 private val LightColorsScheme = lightColorScheme(
     primary = Color.Black,
     surface = Color.White,

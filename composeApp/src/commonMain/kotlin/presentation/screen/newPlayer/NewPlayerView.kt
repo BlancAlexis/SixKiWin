@@ -9,8 +9,6 @@ import presentation.screen.startgame.StartGameViewModel
 @Composable
 fun NewPlayerView(viewModel: StartGameViewModel) {
     Column {
-        BasicTextField2(
-            state = TextFieldState(),
-        )
+
     }
 }

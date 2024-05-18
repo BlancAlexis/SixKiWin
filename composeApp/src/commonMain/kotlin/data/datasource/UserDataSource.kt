@@ -1,5 +1,6 @@
 package data.datasource
 
+import com.benasher44.uuid.uuidFrom
 import data.model.User
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
@@ -10,8 +11,10 @@ class UserDataSource(private val firestoreInstance: FirebaseFirestore) {
     suspend fun addNewUser(user: User): Ressource<Unit> {
         return try {
             firestoreInstance.collection(USERS_COLLECTION).document(user.uuid.toString()).set(user)
+            println("success")
             Ressource.Success(Unit)
         } catch (e: Exception) {
+            println("catch ${e}")
             Ressource.Error(e)
         }
     }
@@ -29,12 +32,14 @@ class UserDataSource(private val firestoreInstance: FirebaseFirestore) {
         }
     }
 
-    suspend fun getUsers(uuidUser: String): Flow<Ressource<List<User>>> = flow {
+    suspend fun getUsers(): Flow<Ressource<List<User>>> = flow {
         emit(Ressource.Loading())
         val documentSnapshot = firestoreInstance.collection(USERS_COLLECTION).get()
         val a: MutableList<User> = mutableListOf<User>()
         if (documentSnapshot.documents != null) {
             documentSnapshot.documents.map {
+                val user = it.data<User>()
+                user.uuid = uuidFrom(it.id)
                 a.add(it.data<User>())
             }
             emit(Ressource.Success(a))

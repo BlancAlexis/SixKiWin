@@ -1,62 +1,61 @@
 package presentation.screen.login
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.foundation.text2.BasicTextField2
 import androidx.compose.material3.Button
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
 import presentation.util.OutlinedSpinner
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LoginScreen(viewModel: LoginViewModel, content: () -> Unit) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if (uiState.listUser.isNotEmpty()) {
-            OutlinedSpinner(
-                modifier = Modifier.fillMaxWidth(0.7f),
-                listMaintenanceName = uiState.listUser,
-                textLabel = "Qui êtes vous ?"
-            )
-        }
-        BasicTextField(
-            onValueChange = {},
-            value = "d"
-        )
-        Button(
-            modifier = Modifier.fillMaxWidth(0.7f),
-            onClick = { content() }
-        ) {
-            Text("d")
-        }
-        Button(
-            onClick = {
+        Column(modifier = Modifier.fillMaxHeight(0.5f)) {
+            Text("Connexion")
+            if (uiState.listUser.isNotEmpty()) {
+                OutlinedSpinner(
+                    modifier = Modifier.fillMaxWidth(0.7f),
+                    listMaintenanceName = uiState.listUser,
+                    textLabel = "Qui êtes vous ?"
+                )
+            } else {
+                Text("Pas d'utilisateur")
             }
-        ) {
-
         }
-        FloatingActionButton(
-            modifier = Modifier.fillMaxWidth(0.2f).align(Alignment.End).padding(bottom = 20.dp),
-            onClick = {  }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxHeight(0.5f).fillMaxWidth(1f).background(Color.Red)
         ) {
-            Icon(Icons.Filled.Add, contentDescription = "Add something")  // You can customize the icon here
+            Text("Inscription")
+            Spacer(modifier = Modifier.fillMaxHeight(0.2f))
+            BasicTextField2(
+                state = uiState.textFieldState
+            )
+            Spacer(modifier = Modifier.fillMaxHeight(0.1f))
+            Button(
+                modifier = Modifier.fillMaxWidth(0.6f),
+                onClick = { content() }
+            ) {
+                Text("Ajout")
+            }
         }
     }
+
 
 }
